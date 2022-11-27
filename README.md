@@ -4,8 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## API
 The consumeable endpoints for this project that have been deployed to heroku:
-https://webinar-server-app.herokuapp.com/webinar
-https://webinar-server-app.herokuapp.com/podcast
+*https://webinar-server-app.herokuapp.com/webinar
+*https://webinar-server-app.herokuapp.com/podcast
 
 ## Available Scripts
 
