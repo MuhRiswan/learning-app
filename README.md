@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## API
-The consumeable endpoints for this project that have been deployed to heroku:
+The consumable endpoints for this project that have been deployed to heroku:
 * https://webinar-server-app.herokuapp.com/webinar
 * https://webinar-server-app.herokuapp.com/podcast
 
