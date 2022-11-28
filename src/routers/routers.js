@@ -40,15 +40,8 @@ const Routers = () => {
                 // </Layout>
               }
             />
-            {/* <Route
-              path="/job/:id"
-              element={
-                <Layout>
-                  <DetailPage />
-                </Layout>
-              }
-            /> */}
             {/* <Route path="/login" element={<LoginRoute />} /> */}
+
             <Route path="/register" element={<RegisterRoute />} />
             <Route path="/adminLogin" element={<AdminLoginRoute />} />
             <Route
