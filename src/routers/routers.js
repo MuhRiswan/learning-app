@@ -10,10 +10,17 @@ import AdminAddDataWebinar from '../pages/adminAddDataWebinar';
 import AdminAddDataPodcast from '../pages/adminAddDataPodcast';
 // import Layout from '../components/Layout';
 // import LoginRoute from '../components/LoginRoute';
+import DetailSchedule from '../components/DetailSchedule';
+import DetailPodcast from '../components/DetailPodcast';
 import RegisterRoute from '../components/registerRoute';
 import AdminLoginRoute from '../components/adminLoginRoute';
 import AdminRoute from '../components/adminRoute';
 import AdminLayout from '../components/adminLayout';
+import Webinar from '../components/Webinar';
+import Podcast from '../components/Podcast';
+import LoginRoute from '../components/LoginRoute';
+import RegulerUserRoute from '../components/regUserRoute';
+import Profile from '../pages/Profile';
 // import LayoutDashboard from '../components/LayoutDashboard';
 // import DataTable from '../components/DataTable';
 // import DataForm from '../components/DataForm';
@@ -40,9 +47,51 @@ const Routers = () => {
                 // </Layout>
               }
             />
+            <Route
+              path="/webinar"
+              element={
+                // <Layout>
+                <Webinar />
+                // </Layout>
+              }
+            />
+            <Route
+              path="/webinar/:id"
+              element={
+                // <Layout>
+                <DetailSchedule />
+                // </Layout>
+              }
+            />
+            <Route
+              path="/podcast"
+              element={
+                // <Layout>
+                <Podcast />
+                // </Layout>
+              }
+            />
+            <Route
+              path="/podcast/:id"
+              element={
+                // <Layout>
+                <DetailPodcast />
+                // </Layout>
+              }
+            />
             {/* <Route path="/login" element={<LoginRoute />} /> */}
 
             <Route path="/register" element={<RegisterRoute />} />
+            <Route path="/login" element={<LoginRoute />} />
+            <Route
+              path="/profile"
+              element={
+                <RegulerUserRoute>
+                  <Profile />
+                </RegulerUserRoute>
+              }
+            />
+
             <Route path="/adminLogin" element={<AdminLoginRoute />} />
             <Route
               path="/admin/adminDashboard"

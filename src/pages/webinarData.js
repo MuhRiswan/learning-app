@@ -9,8 +9,13 @@ const WebinarData = () => {
   const { contextState, contextFunctions } = useContext(GlobalContext);
   const { arrayWebinar, setArrayWebinar, fetchStatus, setFetchStatus } =
     contextState;
-  const { renderDataWebinar, handleEditWebinar, handleDeleteWebinar } =
-    contextFunctions;
+  const {
+    renderDataWebinar,
+    handleEditWebinar,
+    handleDeleteWebinar,
+    showLocalDate,
+  } = contextFunctions;
+
   useEffect(() => {
     if (fetchStatus === true) {
       renderDataWebinar();
@@ -54,7 +59,7 @@ const WebinarData = () => {
                     <td>
                       <img src={el.image} style={{ width: '100px' }} />{' '}
                     </td>
-                    <td>{el.tanggal}</td>
+                    <td>{showLocalDate(el.tanggal)}</td>
                     <td>{el.waktu}</td>
                     <td className="flex gap-2">
                       <button

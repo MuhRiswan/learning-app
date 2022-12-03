@@ -2,31 +2,23 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { GlobalContext } from '../context/GlobalContext';
 
-function DetailSchedule() {
+function DetailPodcast() {
   const { id } = useParams();
   const [filtered, setFiltered] = useState([]);
   console.log(Number(id));
   const { contextState, contextFunctions } = useContext(GlobalContext);
-  const {
-    arrayWebinar,
-    arrayPodcast,
-    setArrayWebinar,
-    fetchStatus,
-    setFetchStatus,
-  } = contextState;
-  const { renderDataWebinar } = contextFunctions;
-  const filteredDetail = arrayWebinar.find((el) => el.id === Number(id));
-  console.log(arrayWebinar);
-  console.log(filtered);
-  const linkDaftar = () => {
-    return `https://${filtered.link_daftar}`;
-  };
+  const { arrayPodcast, setArrayWebinar, fetchStatus, setFetchStatus } =
+    contextState;
+  const { renderDataPodcast } = contextFunctions;
+  const filteredDetail = arrayPodcast.find((el) => el.id === Number(id));
+  console.log(arrayPodcast);
+
   useEffect(() => {
     if (fetchStatus === true) {
-      renderDataWebinar();
+      renderDataPodcast();
       setFiltered(filteredDetail);
     }
-  }, [fetchStatus, arrayWebinar]);
+  }, []);
   return (
     <div className="detail-page py-5">
       <div className="detail-page__image px-5 py-2">
@@ -43,14 +35,6 @@ function DetailSchedule() {
         {/* {narasumber} */}
         <p className="fw-500 fs-5">Sumber: {filtered.sumber}</p>
         {/* {sumber} */}
-        <ul>
-          <li>Hari / Tanggal: {filtered.tanggal}</li>
-          {/* {tanggal} */}
-          <li>Waktu: {filtered.waktu}</li>
-          {/* {waktu} */}
-          <li>Via: {filtered.via}</li>
-          {/* {via} */}
-        </ul>
         <div className="detail-page__desrkipsi">
           <span className="fw-bold">Deskripsi:</span>
           {/* {deskripsi} */}
@@ -58,7 +42,7 @@ function DetailSchedule() {
         </div>
         <a
           className="detail-page__button btn position-relative px-5"
-          href={linkDaftar()}
+          href={filtered.link}
           target="_blank"
           rel="noreferrer"
         >
@@ -70,4 +54,4 @@ function DetailSchedule() {
   );
 }
 
-export default DetailSchedule;
+export default DetailPodcast;

@@ -21,7 +21,7 @@ const AdminAddDataPodcast = () => {
     console.log(IdData);
     if (IdData !== undefined) {
       axios
-        .get(`https://webinar-server-app.herokuapp.com/podcast/${IdData}`)
+        .get(`https://new-webinar-server-app.vercel.app/podcast/${IdData}`)
         .then((response) => {
           console.log(response);
           setInputPodcast({
@@ -139,7 +139,7 @@ const AdminAddDataPodcast = () => {
               name="kategori"
               onChange={handleChangePodcast}
               value={inputPodcast.kategori}
-              class="form-control"
+              className="form-control"
             >
               {Kategori.map((e, key) => {
                 return (

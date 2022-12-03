@@ -11,6 +11,8 @@ import {
   collection,
   where,
   addDoc,
+  orderBy,
+  onSnapshot,
 } from 'firebase/firestore';
 import {
   getAuth,
@@ -69,6 +71,7 @@ const registerWithEmailAndPassword = async (
       profile_image,
       authProvider: 'local',
       email,
+      created: new Date(),
     });
     Cookies.set('token', user.accessToken, { expires: 1 });
     Cookies.set('user', JSON.stringify(user), { expires: 1 });
@@ -81,7 +84,14 @@ const registerWithEmailAndPassword = async (
 
 const logInWithEmailAndPassword = async (email, password) => {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    const res = await signInWithEmailAndPassword(auth, email, password);
+    const user = res.user;
+    // console.log(user);
+    // console.log(user.accessToken);
+    // console.log(user.uid);
+    Cookies.set('token', user.accessToken, { expires: 1 });
+    Cookies.set('user', JSON.stringify(user), { expires: 1 });
+    return user;
   } catch (err) {
     console.error(err);
     alert(err.message);

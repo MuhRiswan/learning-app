@@ -1,19 +1,19 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, registerWithEmailAndPassword } from '../firebase';
+import { auth, logInWithEmailAndPassword } from '../firebase';
 import { useNavigate } from 'react-router-dom';
+import { GlobalContext } from '../context/GlobalContext';
 
-const Register = () => {
+const Login = () => {
   const navigate = useNavigate();
+  const { contextState, contextFunctions } = useContext(GlobalContext);
+  const { setIsLoggedIn, setArrayWebinar, fetchStatus, setFetchStatus } =
+    contextState;
   const [input, setInput] = useState({
-    name: '',
-    profile_image: '',
     email: '',
     password: '',
   });
   const [user, loading, error] = useAuthState(auth);
-  console.log(user);
   // console.log(`user` + JSON.stringify(user), `loading` + loading);
   const handleChange = (event) => {
     let value = event.target.value;
@@ -22,44 +22,23 @@ const Register = () => {
     setInput({ ...input, [name]: value });
   };
 
-  const handleRegister = (event) => {
+  const handleLogin = (event) => {
     event.preventDefault();
 
-    let { name, profile_image, email, password } = input;
+    let { email, password } = input;
 
-    registerWithEmailAndPassword(name, profile_image, email, password);
+    logInWithEmailAndPassword(email, password);
+    setIsLoggedIn(true);
     navigate('/');
     // console.log(user);
     // console.log(user.accessToken);
     // console.log(user.uid);
   };
-
   return (
     <div>
-      <h1>Register</h1>
+      <h1>Login</h1>
 
-      <form onSubmit={handleRegister}>
-        <label>
-          Nama
-          <input
-            name="name"
-            onChange={handleChange}
-            value={input.name}
-            type="name"
-            placeholder="name"
-          />
-        </label>
-        <label>
-          Link Foto Profil
-          <input
-            name="profile_image"
-            onChange={handleChange}
-            value={input.profile_image}
-            type="profile_image"
-            placeholder="profile_image"
-          />
-        </label>
-
+      <form onSubmit={handleLogin}>
         <label>
           Email
           <input
@@ -80,10 +59,10 @@ const Register = () => {
             placeholder="Password"
           />
         </label>
-        <button type="submit">Register</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
 };
 
-export default Register;
+export default Login;
