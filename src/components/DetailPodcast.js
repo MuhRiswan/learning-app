@@ -7,8 +7,7 @@ function DetailPodcast() {
   const [filtered, setFiltered] = useState([]);
   console.log(Number(id));
   const { contextState, contextFunctions } = useContext(GlobalContext);
-  const { arrayPodcast, setArrayWebinar, fetchStatus, setFetchStatus } =
-    contextState;
+  const { arrayPodcast, setArrayWebinar, fetchStatus } = contextState;
   const { renderDataPodcast } = contextFunctions;
   const filteredDetail = arrayPodcast.find((el) => el.id === Number(id));
   console.log(arrayPodcast);

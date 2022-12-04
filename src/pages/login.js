@@ -7,8 +7,7 @@ import { GlobalContext } from '../context/GlobalContext';
 const Login = () => {
   const navigate = useNavigate();
   const { contextState, contextFunctions } = useContext(GlobalContext);
-  const { setIsLoggedIn, setArrayWebinar, fetchStatus, setFetchStatus } =
-    contextState;
+  const { setIsLoggedIn, setArrayWebinar } = contextState;
   const [input, setInput] = useState({
     email: '',
     password: '',

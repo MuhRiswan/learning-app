@@ -21,7 +21,7 @@ const AdminAddDataPodcast = () => {
     console.log(IdData);
     if (IdData !== undefined) {
       axios
-        .get(`https://new-webinar-server-app.vercel.app/podcast/${IdData}`)
+        .get(`https://webinar-server-new.herokuapp.com/podcast/${IdData}`)
         .then((response) => {
           console.log(response);
           setInputPodcast({

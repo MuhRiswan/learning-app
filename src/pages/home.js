@@ -6,8 +6,7 @@ import { GlobalContext } from '../context/GlobalContext';
 
 const Home = () => {
   const { contextState, contextFunctions } = useContext(GlobalContext);
-  const { setIsLoggedIn, isLoggedIn, fetchStatus, setFetchStatus } =
-    contextState;
+  const { setIsLoggedIn, isLoggedIn } = contextState;
   const logoutBtn = () => {
     if (isLoggedIn) {
       return <button onClick={logouthandler}>Logout</button>;

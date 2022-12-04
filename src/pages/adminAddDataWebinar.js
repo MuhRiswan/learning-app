@@ -23,7 +23,7 @@ const AdminAddDataWebinar = () => {
     console.log(IdData);
     if (IdData !== undefined) {
       axios
-        .get(`https://new-webinar-server-app.vercel.app/webinar/${IdData}`)
+        .get(`https://webinar-server-new.herokuapp.com/webinar/${IdData}`)
         .then((response) => {
           console.log(response);
           setInputWebinar({

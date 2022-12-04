@@ -26,6 +26,13 @@ function ScheduleApp() {
     setFetchStatus(true);
   };
 
+  const handleDetailPodcast = (event) => {
+    const id = parseInt(event.target.getAttribute('data-item'));
+    // console.log(id);
+    navigate(`/podcast/${id}`);
+    setFetchStatus(true);
+  };
+
   const handleShowWebinar = () => {
     navigate(`/webinar`);
     setFetchStatus(true);
@@ -173,7 +180,11 @@ function ScheduleApp() {
                         </div>
                         <div className="card-body">
                           <span className="">{el.kategori}</span>
-                          <h3>{el.judul}</h3>
+                          <h3>
+                            <a onClick={handleDetailPodcast} data-item={el.id}>
+                              {el.judul}
+                            </a>
+                          </h3>
                           <p className="deskripsi my-4">{el.deskripsi}</p>
                           <p>{el.link}</p>
                         </div>

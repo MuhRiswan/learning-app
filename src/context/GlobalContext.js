@@ -6,6 +6,8 @@ export const GlobalContext = createContext();
 
 export const GlobalProvider = (props) => {
   let navigate = useNavigate();
+  const userLocal = JSON.parse(Cookies.get('user'));
+  const localUID = userLocal.uid;
   const [isLike, setIsLike] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [fetchStatus, setFetchStatus] = useState(true);
@@ -37,22 +39,24 @@ export const GlobalProvider = (props) => {
 
   const renderDataWebinar = () => {
     axios
-      .get('https://new-webinar-server-app.vercel.app/webinar')
+      .get('https://webinar-server-new.herokuapp.com/webinar')
       .then((res) => {
         const tempArr = res.data.map((el) => {
           //   console.log(el);
           return el;
         });
         setArrayWebinar(tempArr);
+        // console.log(arrayWebinar);
         // console.log(res);
       })
       .catch((e) => console.log(e));
+
     setFetchStatus(false);
   };
 
   const renderDataPodcast = () => {
     axios
-      .get('https://new-webinar-server-app.vercel.app/podcast')
+      .get('https://webinar-server-new.herokuapp.com/podcast')
       .then((res) => {
         const tempArr = res.data.map((el) => {
           //   console.log(el);
@@ -97,7 +101,7 @@ export const GlobalProvider = (props) => {
 
     if (currentId === -1) {
       axios
-        .post('https://new-webinar-server-app.vercel.app/webinar', {
+        .post('https://webinar-server-new.herokuapp.com/webinar', {
           judul,
           sumber,
           narasumber,
@@ -116,7 +120,7 @@ export const GlobalProvider = (props) => {
         });
     } else {
       axios
-        .put(`https://new-webinar-server-app.vercel.app/webinar/${currentId}`, {
+        .put(`https://webinar-server-new.herokuapp.com/webinar/${currentId}`, {
           judul,
           sumber,
           narasumber,
@@ -156,7 +160,7 @@ export const GlobalProvider = (props) => {
 
     if (currentId === -1) {
       axios
-        .post('https://new-webinar-server-app.vercel.app/podcast', {
+        .post('https://webinar-server-new.herokuapp.com/podcast', {
           judul,
           sumber,
           narasumber,
@@ -167,12 +171,12 @@ export const GlobalProvider = (props) => {
         })
         .then((response) => {
           console.log(response);
-          setFetchStatus(true);
+          setFetchStatusPodcast(true);
           navigate('/admin/dataPodcast');
         });
     } else {
       axios
-        .put(`https://new-webinar-server-app.vercel.app/podcast/${currentId}`, {
+        .put(`https://webinar-server-new.herokuapp.com/podcast/${currentId}`, {
           judul,
           sumber,
           narasumber,
@@ -183,7 +187,7 @@ export const GlobalProvider = (props) => {
         })
         .then((response) => {
           console.log(response);
-          setFetchStatus(true);
+          setFetchStatusPodcast(true);
           navigate('/admin/dataPodcast');
         });
     }
@@ -210,13 +214,13 @@ export const GlobalProvider = (props) => {
     const id = parseInt(event.target.value);
     setcurrentId(id);
     navigate(`/admin/InputPodcast/edit/${id}`);
-    setFetchStatus(true);
+    setFetchStatusPodcast(true);
   };
 
   const handleDeleteWebinar = (event) => {
     const iddel = parseInt(event.target.value);
     axios
-      .delete(`https://new-webinar-server-app.vercel.app/webinar/${iddel}`)
+      .delete(`https://webinar-server-new.herokuapp.com/webinar/${iddel}`)
       .then((response) => {
         console.log(response);
         setFetchStatus(true);
@@ -226,10 +230,10 @@ export const GlobalProvider = (props) => {
   const handleDeletePodcast = (event) => {
     const iddel = parseInt(event.target.value);
     axios
-      .delete(`https://new-webinar-server-app.vercel.app/podcast/${iddel}`)
+      .delete(`https://webinar-server-new.herokuapp.com/podcast/${iddel}`)
       .then((response) => {
         console.log(response);
-        setFetchStatus(true);
+        setFetchStatusPodcast(true);
       });
   };
 
@@ -242,12 +246,21 @@ export const GlobalProvider = (props) => {
     return newDate;
   };
 
-  const checkIfPostLiked = (event) => {
-    const id = event.target.value;
+  const checkIfPostLiked = (id) => {
+    // const id = event.target.value;
     axios
-      .get(`https://new-webinar-server-app.vercel.app/podcast/${id}`)
+      .get(`https://webinar-server-new.herokuapp.com/webinar/${id}`)
       .then((response) => {
-        console.log(response.data.like);
+        const res = response.data.like;
+        if (res === undefined) {
+          return false;
+        } else {
+          const checkRes = res.includes(localUID);
+          return checkRes;
+          console.log(checkRes);
+        }
+
+        // return res;
       });
   };
 
