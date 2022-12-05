@@ -23,7 +23,7 @@ const AdminAddDataWebinar = () => {
     console.log(IdData);
     if (IdData !== undefined) {
       axios
-        .get(`https://webinar-server-app.herokuapp.com/webinar/${IdData}`)
+        .get(`https://webinar-server-new.herokuapp.com/webinar/${IdData}`)
         .then((response) => {
           console.log(response);
           setInputWebinar({
@@ -159,7 +159,7 @@ const AdminAddDataWebinar = () => {
               name="kategori"
               onChange={handleChangeWebinar}
               value={inputWebinar.kategori}
-              class="form-control"
+              className="form-control"
             >
               {Kategori.map((e, key) => {
                 return (
@@ -191,7 +191,7 @@ const AdminAddDataWebinar = () => {
               Tanggal
             </label>
             <input
-              type="text"
+              type="date"
               className="form-control"
               id="tanggal"
               onChange={handleChangeWebinar}
