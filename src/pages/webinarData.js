@@ -1,8 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
-import { useNavigate, Link, useSearchParams } from 'react-router-dom';
-import { Card, Row, Col, Container, Button } from 'react-bootstrap';
 
 const WebinarData = () => {
   let num = 1;

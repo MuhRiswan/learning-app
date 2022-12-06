@@ -6,8 +6,6 @@ export const GlobalContext = createContext();
 
 export const GlobalProvider = (props) => {
   let navigate = useNavigate();
-  const userLocal = JSON.parse(Cookies.get('user'));
-  const localUID = userLocal.uid;
   const [isLike, setIsLike] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [fetchStatus, setFetchStatus] = useState(true);
@@ -42,16 +40,23 @@ export const GlobalProvider = (props) => {
       .get('https://webinar-server-new.herokuapp.com/webinar')
       .then((res) => {
         const tempArr = res.data.map((el) => {
-          //   console.log(el);
           return el;
         });
         setArrayWebinar(tempArr);
-        // console.log(arrayWebinar);
-        // console.log(res);
       })
       .catch((e) => console.log(e));
 
     setFetchStatus(false);
+  };
+
+  const getUID = () => {
+    if (Cookies.get('user') == undefined) {
+      return null;
+    } else {
+      const userLocal = JSON.parse(Cookies.get('user'));
+      const localUID = userLocal.uid;
+      return localUID;
+    }
   };
 
   const renderDataPodcast = () => {
@@ -59,11 +64,9 @@ export const GlobalProvider = (props) => {
       .get('https://webinar-server-new.herokuapp.com/podcast')
       .then((res) => {
         const tempArr = res.data.map((el) => {
-          //   console.log(el);
           return el;
         });
         setArrayPodcast(tempArr);
-        // console.log(res);
       })
       .catch((e) => console.log(e));
     setFetchStatusPodcast(false);
@@ -97,7 +100,6 @@ export const GlobalProvider = (props) => {
       tanggal,
       waktu,
     } = inputWebinar;
-    console.log(inputWebinar);
 
     if (currentId === -1) {
       axios
@@ -114,7 +116,6 @@ export const GlobalProvider = (props) => {
           waktu,
         })
         .then((response) => {
-          console.log(response);
           setFetchStatus(true);
           navigate('/admin/dataWebinar');
         });
@@ -133,7 +134,6 @@ export const GlobalProvider = (props) => {
           waktu,
         })
         .then((response) => {
-          console.log(response);
           setFetchStatus(true);
           navigate('/admin/dataWebinar');
         });
@@ -170,7 +170,6 @@ export const GlobalProvider = (props) => {
           kategori,
         })
         .then((response) => {
-          console.log(response);
           setFetchStatusPodcast(true);
           navigate('/admin/dataPodcast');
         });
@@ -186,7 +185,6 @@ export const GlobalProvider = (props) => {
           kategori,
         })
         .then((response) => {
-          console.log(response);
           setFetchStatusPodcast(true);
           navigate('/admin/dataPodcast');
         });
@@ -222,7 +220,6 @@ export const GlobalProvider = (props) => {
     axios
       .delete(`https://webinar-server-new.herokuapp.com/webinar/${iddel}`)
       .then((response) => {
-        console.log(response);
         setFetchStatus(true);
       });
   };
@@ -232,7 +229,6 @@ export const GlobalProvider = (props) => {
     axios
       .delete(`https://webinar-server-new.herokuapp.com/podcast/${iddel}`)
       .then((response) => {
-        console.log(response);
         setFetchStatusPodcast(true);
       });
   };
@@ -244,24 +240,6 @@ export const GlobalProvider = (props) => {
       day: '2-digit',
     });
     return newDate;
-  };
-
-  const checkIfPostLiked = (id) => {
-    // const id = event.target.value;
-    axios
-      .get(`https://webinar-server-new.herokuapp.com/webinar/${id}`)
-      .then((response) => {
-        const res = response.data.like;
-        if (res === undefined) {
-          return false;
-        } else {
-          const checkRes = res.includes(localUID);
-          return checkRes;
-          console.log(checkRes);
-        }
-
-        // return res;
-      });
   };
 
   const contextState = {
@@ -293,7 +271,7 @@ export const GlobalProvider = (props) => {
     handleDeleteWebinar,
     handleDeletePodcast,
     showLocalDate,
-    checkIfPostLiked,
+    getUID,
   };
 
   return (

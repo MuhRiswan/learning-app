@@ -7,7 +7,6 @@ import { GlobalContext } from '../context/GlobalContext';
 
 const AdminLogin = () => {
   const { contextState } = useContext(GlobalContext);
-  const { user, setUser } = contextState;
   const navigate = useNavigate();
   const [input, setInput] = useState({
     email: '',
@@ -29,7 +28,6 @@ const AdminLogin = () => {
       Cookies.set('admin', '1', { expires: 1 });
       navigate('/admin/adminDashboard');
     }
-    console.log(email, password);
   };
 
   return (

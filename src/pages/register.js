@@ -13,8 +13,6 @@ const Register = () => {
     password: '',
   });
   const [user, loading, error] = useAuthState(auth);
-  console.log(user);
-  // console.log(`user` + JSON.stringify(user), `loading` + loading);
   const handleChange = (event) => {
     let value = event.target.value;
     let name = event.target.name;
@@ -29,9 +27,6 @@ const Register = () => {
 
     registerWithEmailAndPassword(name, profile_image, email, password);
     navigate('/');
-    // console.log(user);
-    // console.log(user.accessToken);
-    // console.log(user.uid);
   };
 
   return (

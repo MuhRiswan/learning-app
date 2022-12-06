@@ -18,12 +18,10 @@ const AdminAddDataPodcast = () => {
   const { handleChangePodcast, handleSubmitPodcast } = contextFunctions;
 
   useEffect(() => {
-    console.log(IdData);
     if (IdData !== undefined) {
       axios
         .get(`https://webinar-server-new.herokuapp.com/podcast/${IdData}`)
         .then((response) => {
-          console.log(response);
           setInputPodcast({
             judul: response.data.judul,
             sumber: response.data.sumber,

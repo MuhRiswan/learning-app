@@ -8,6 +8,7 @@ import WebinarData from '../pages/webinarData';
 import PodcastData from '../pages/podcastData';
 import AdminAddDataWebinar from '../pages/adminAddDataWebinar';
 import AdminAddDataPodcast from '../pages/adminAddDataPodcast';
+import LikedWebinar from '../pages/LikedWebinar';
 // import Layout from '../components/Layout';
 // import LoginRoute from '../components/LoginRoute';
 import DetailSchedule from '../components/DetailSchedule';
@@ -21,6 +22,7 @@ import Podcast from '../components/Podcast';
 import LoginRoute from '../components/LoginRoute';
 import RegulerUserRoute from '../components/regUserRoute';
 import Profile from '../pages/Profile';
+import LikedPodcast from '../pages/LikedPodcast';
 // import LayoutDashboard from '../components/LayoutDashboard';
 // import DataTable from '../components/DataTable';
 // import DataForm from '../components/DataForm';
@@ -91,7 +93,22 @@ const Routers = () => {
                 </RegulerUserRoute>
               }
             />
-
+            <Route
+              path="/webinar-disukai"
+              element={
+                <RegulerUserRoute>
+                  <LikedWebinar />
+                </RegulerUserRoute>
+              }
+            />
+            <Route
+              path="/podcast-disukai"
+              element={
+                <RegulerUserRoute>
+                  <LikedPodcast />
+                </RegulerUserRoute>
+              }
+            />
             <Route path="/adminLogin" element={<AdminLoginRoute />} />
             <Route
               path="/admin/adminDashboard"

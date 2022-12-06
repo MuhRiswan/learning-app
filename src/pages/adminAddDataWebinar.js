@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
-import { useNavigate, Link, useParams } from 'react-router-dom';
-import { Card, Row, Col, Container, Button } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 import Kategori from '../kategori.json';
 
 const AdminAddDataWebinar = () => {
@@ -17,15 +16,11 @@ const AdminAddDataWebinar = () => {
   } = contextState;
   const { handleChangeWebinar, handleSubmitWebinar } = contextFunctions;
 
-  console.log(Kategori);
-
   useEffect(() => {
-    console.log(IdData);
     if (IdData !== undefined) {
       axios
         .get(`https://webinar-server-new.herokuapp.com/webinar/${IdData}`)
         .then((response) => {
-          console.log(response);
           setInputWebinar({
             judul: response.data.judul,
             sumber: response.data.sumber,

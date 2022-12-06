@@ -6,14 +6,12 @@ import { GlobalContext } from '../context/GlobalContext';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { contextState, contextFunctions } = useContext(GlobalContext);
-  const { setIsLoggedIn, setArrayWebinar } = contextState;
+  const { contextState } = useContext(GlobalContext);
+  const { setIsLoggedIn } = contextState;
   const [input, setInput] = useState({
     email: '',
     password: '',
   });
-  const [user, loading, error] = useAuthState(auth);
-  // console.log(`user` + JSON.stringify(user), `loading` + loading);
   const handleChange = (event) => {
     let value = event.target.value;
     let name = event.target.name;
@@ -29,9 +27,6 @@ const Login = () => {
     logInWithEmailAndPassword(email, password);
     setIsLoggedIn(true);
     navigate('/');
-    // console.log(user);
-    // console.log(user.accessToken);
-    // console.log(user.uid);
   };
   return (
     <div>

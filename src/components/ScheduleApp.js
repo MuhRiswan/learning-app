@@ -1,36 +1,30 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
+
 function ScheduleApp() {
   let navigate = useNavigate();
   const { contextState, contextFunctions } = useContext(GlobalContext);
   const {
     arrayWebinar,
     arrayPodcast,
-    setArrayWebinar,
     fetchStatusPodcast,
     fetchStatus,
     setFetchStatus,
+    setFetchStatusPodcast,
   } = contextState;
-  const {
-    renderDataWebinar,
-    renderDataPodcast,
-    handleEditPodcast,
-    handleDeletePodcast,
-  } = contextFunctions;
+  const { renderDataWebinar, renderDataPodcast } = contextFunctions;
 
   const handleDetail = (event) => {
     const id = parseInt(event.target.getAttribute('data-item'));
-    // console.log(id);
     navigate(`/webinar/${id}`);
     setFetchStatus(true);
   };
 
   const handleDetailPodcast = (event) => {
     const id = parseInt(event.target.getAttribute('data-item'));
-    // console.log(id);
     navigate(`/podcast/${id}`);
-    setFetchStatus(true);
+    setFetchStatusPodcast(true);
   };
 
   const handleShowWebinar = () => {

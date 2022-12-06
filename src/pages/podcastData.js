@@ -1,14 +1,11 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
-import { useNavigate, Link, useSearchParams } from 'react-router-dom';
-import { Card, Row, Col, Container, Button } from 'react-bootstrap';
 
 const PodcastData = () => {
   let num = 1;
   const { contextState, contextFunctions } = useContext(GlobalContext);
-  const { arrayPodcast, setArrayWebinar, fetchStatusPodcast, setFetchStatus } =
-    contextState;
+  const { arrayPodcast, fetchStatusPodcast } = contextState;
   const { renderDataPodcast, handleEditPodcast, handleDeletePodcast } =
     contextFunctions;
   useEffect(() => {

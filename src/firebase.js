@@ -2,7 +2,7 @@
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from 'firebase/app';
-
+import Swal from 'sweetalert2';
 import { getAnalytics } from 'firebase/analytics';
 import {
   getFirestore,
@@ -13,6 +13,8 @@ import {
   addDoc,
   orderBy,
   onSnapshot,
+  doc,
+  setDoc,
 } from 'firebase/firestore';
 import {
   getAuth,
@@ -62,10 +64,8 @@ const registerWithEmailAndPassword = async (
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
-    // console.log(user);
-    // console.log(user.accessToken);
-    // console.log(user.uid);
-    await addDoc(collection(db, 'users'), {
+
+    await setDoc(doc(db, 'users', user.uid), {
       uid: user.uid,
       name,
       profile_image,
@@ -73,12 +73,17 @@ const registerWithEmailAndPassword = async (
       email,
       created: new Date(),
     });
+
     Cookies.set('token', user.accessToken, { expires: 1 });
     Cookies.set('user', JSON.stringify(user), { expires: 1 });
     return user;
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    Swal.fire({
+      title: 'Error!',
+      text: err.message,
+      icon: 'error',
+      confirmButtonText: 'OK',
+    });
   }
 };
 
@@ -86,15 +91,16 @@ const logInWithEmailAndPassword = async (email, password) => {
   try {
     const res = await signInWithEmailAndPassword(auth, email, password);
     const user = res.user;
-    // console.log(user);
-    // console.log(user.accessToken);
-    // console.log(user.uid);
     Cookies.set('token', user.accessToken, { expires: 1 });
     Cookies.set('user', JSON.stringify(user), { expires: 1 });
     return user;
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    Swal.fire({
+      title: 'Error!',
+      text: err.message,
+      icon: 'error',
+      confirmButtonText: 'OK',
+    });
   }
 };
 

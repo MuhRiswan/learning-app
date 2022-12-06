@@ -2,6 +2,8 @@ import React, { useContext, useMemo, useEffect, useState } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import CategoryBtn from './CategoryBtn';
+import { BsHeartFill, BsHeart } from 'react-icons/bs';
+import Cookies from 'js-cookie';
 
 function Podcast() {
   let navigate = useNavigate();
@@ -9,7 +11,7 @@ function Podcast() {
   const { contextState, contextFunctions } = useContext(GlobalContext);
   const { arrayPodcast, fetchStatusPodcast, setFetchStatusPodcast } =
     contextState;
-  const { renderDataPodcast } = contextFunctions;
+  const { renderDataPodcast, getUID } = contextFunctions;
 
   const handleKategori = (event) => {
     event.preventDefault();
@@ -21,7 +23,13 @@ function Podcast() {
     setKategori('');
   };
 
-  const filterCategory = arrayPodcast.find((el) => el.kategori === kategori);
+  const checkIfPostLiked = (id) => {
+    const filteredDetail = arrayPodcast.find((el) => el.id === Number(id));
+    //
+    const likeArray = filteredDetail.like;
+    const checkInclude = likeArray.includes(getUID());
+    return checkInclude;
+  };
 
   const filteredPodcast = useMemo(() => {
     if (kategori === '') {
@@ -31,11 +39,9 @@ function Podcast() {
     }
   }, [kategori, arrayPodcast]);
 
-  console.log(filterCategory);
-  console.log(arrayPodcast);
   const handleDetail = (event) => {
     const id = parseInt(event.target.getAttribute('data-item'));
-    // console.log(id);
+
     navigate(`/podcast/${id}`);
     setFetchStatusPodcast(true);
   };
@@ -44,7 +50,7 @@ function Podcast() {
     if (fetchStatusPodcast === true) {
       renderDataPodcast();
     }
-  }, [fetchStatusPodcast, setFetchStatusPodcast]);
+  }, [fetchStatusPodcast, setFetchStatusPodcast, checkIfPostLiked]);
   return (
     <div className="podcast-page py-4">
       <div className="container">
@@ -64,6 +70,15 @@ function Podcast() {
                   </div>
                   <div className="card-body">
                     <span className="">{el.kategori}</span>
+                    {checkIfPostLiked(el.id) === true ? (
+                      <p value={el.id}>
+                        <BsHeartFill /> {el.like.length}
+                      </p>
+                    ) : (
+                      <p value={el.id}>
+                        <BsHeart /> {el.like.length}
+                      </p>
+                    )}
                     <h3>
                       <a onClick={handleDetail} data-item={el.id}>
                         {el.judul}

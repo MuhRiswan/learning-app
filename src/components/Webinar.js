@@ -1,28 +1,16 @@
 import React, { useContext, useMemo, useEffect, useState } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import CategoryBtn from './CategoryBtn';
 import { BsHeartFill, BsHeart } from 'react-icons/bs';
 import axios from 'axios';
 
 function Webinar() {
   let navigate = useNavigate();
-  const userLocal = JSON.parse(Cookies.get('user'));
-  const localUID = userLocal.uid;
-  const [likePostArray, setLikePostArray] = useState();
   const [kategori, setKategori] = useState('');
   const { contextState, contextFunctions } = useContext(GlobalContext);
-  const {
-    arrayWebinar,
-    arrayPodcast,
-    setArrayWebinar,
-    fetchStatusPodcast,
-    fetchStatus,
-    setFetchStatus,
-  } = contextState;
-  const { renderDataWebinar, renderDataPodcast, handleEditPodcast } =
-    contextFunctions;
+  const { arrayWebinar, fetchStatus, setFetchStatus } = contextState;
+  const { renderDataWebinar, getUID } = contextFunctions;
 
   const handleKategori = (event) => {
     event.preventDefault();
@@ -34,8 +22,6 @@ function Webinar() {
     setKategori('');
   };
 
-  const filterCategory = arrayWebinar.find((el) => el.kategori === kategori);
-
   const filteredWebinar = useMemo(() => {
     if (kategori === '') {
       return arrayWebinar;
@@ -44,86 +30,18 @@ function Webinar() {
     }
   }, [kategori, arrayWebinar]);
 
-  // console.log(filterCategory);
-  // console.log(arrayWebinar);
   const handleDetail = (event) => {
     const id = parseInt(event.target.getAttribute('data-item'));
-    // console.log(id);
+
     navigate(`/webinar/${id}`);
     setFetchStatus(true);
-  };
-
-  const handleDisLike = async (event) => {
-    const id = parseInt(event.target.value);
-    const filteredDetail = await arrayWebinar.find(
-      (el) => el.id === Number(id)
-    );
-
-    // console.log(arrayWebinar.find((el) => el.id === Number(id)).like);
-    const likeArray = await arrayWebinar.find((el) => el.id === Number(id))
-      .like;
-    // const i = likeArray.indexOf('fdash3iu452u4234');
-    // console.log(i);
-    // console.log(likeArray);
-    // console.log(likeArray.splice(i, 1));
-    // console.log(likeArray);
-    setLikePostArray(likeArray);
-    const checkInclude = likeArray.includes(localUID);
-    if (checkInclude == true) {
-      const i = likeArray.indexOf(localUID);
-      // axios
-      //   .put(`https://webinar-server-new.herokuapp.com/webinar/${id}`, {
-      //     ...filteredDetail,
-      //     like: likeArray.splice(i, 1),
-      //   })
-      //   .then((response) => {
-      //     console.log(response);
-      //     setLikePostArray([]);
-      //   });
-      console.log(i);
-      console.log(likeArray.splice(i, 1));
-      // console.log(...arrayWebinar);
-    }
-  };
-
-  const handleLike = (event) => {
-    const id = parseInt(event.target.value);
-    const filteredDetail = arrayWebinar.find((el) => el.id === Number(id));
-
-    // console.log(arrayWebinar.find((el) => el.id === Number(id)).like);
-    const likeArray = arrayWebinar.find((el) => el.id === Number(id)).like;
-    // const i = likeArray.indexOf('fdash3iu452u4234');
-    // console.log(i);
-    // console.log(likeArray);
-    // console.log(likeArray.splice(i, 1));
-    // console.log(likeArray);
-    setLikePostArray(likeArray);
-
-    const checkInclude = likeArray.includes(localUID);
-    if (checkInclude == true) {
-      const i = likeArray.indexOf(localUID);
-      // console.log(i);
-      // console.log(likeArray.splice(i, 1));
-      // console.log(...arrayWebinar);
-    }
-  };
-  console.log(arrayWebinar);
-  console.log(likePostArray);
-  const likeLength = (id) => {
-    const filteredDetail = arrayWebinar.find((el) => el.id === Number(id));
-    // const checkInclude = likeArray.includes(localUID);
-    const likeArray = filteredDetail.like.length;
-    return likeArray;
-
-    console.log(likeArray);
   };
 
   const checkIfPostLiked = (id) => {
     const filteredDetail = arrayWebinar.find((el) => el.id === Number(id));
     //
     const likeArray = filteredDetail.like;
-    const checkInclude = likeArray.includes(localUID);
-    // console.log(checkInclude);
+    const checkInclude = likeArray.includes(getUID());
     return checkInclude;
   };
 
@@ -154,13 +72,13 @@ function Webinar() {
                   <div className="card-body">
                     <span className="">{el.kategori}</span>
                     {checkIfPostLiked(el.id) === true ? (
-                      <button value={el.id} onClick={handleDisLike}>
-                        <BsHeartFill /> {likeLength(el.id)}
-                      </button>
+                      <p>
+                        <BsHeartFill /> {el.like.length}
+                      </p>
                     ) : (
-                      <button value={el.id} onClick={handleLike}>
-                        <BsHeart /> {likeLength(el.id)}
-                      </button>
+                      <p>
+                        <BsHeart /> {el.like.length}
+                      </p>
                     )}
                     {/* <span>
                       {likeLength(el.id) !== 0 ? likeLength(el.id) : null}
