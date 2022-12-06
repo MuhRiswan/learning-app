@@ -3,7 +3,6 @@ import { GlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import CategoryBtn from './CategoryBtn';
 import { BsHeartFill, BsHeart } from 'react-icons/bs';
-import axios from 'axios';
 
 function Webinar() {
   let navigate = useNavigate();
@@ -21,7 +20,17 @@ function Webinar() {
     event.preventDefault();
     setKategori('');
   };
-
+  const checkIfPostLiked = (id) => {
+    const filteredDetail = arrayWebinar.find((el) => el.id === Number(id));
+    //
+    const likeArray = filteredDetail.like;
+    if (likeArray === undefined) {
+      return null;
+    } else {
+      const checkInclude = likeArray.includes(getUID());
+      return checkInclude;
+    }
+  };
   const filteredWebinar = useMemo(() => {
     if (kategori === '') {
       return arrayWebinar;
@@ -37,19 +46,11 @@ function Webinar() {
     setFetchStatus(true);
   };
 
-  const checkIfPostLiked = (id) => {
-    const filteredDetail = arrayWebinar.find((el) => el.id === Number(id));
-    //
-    const likeArray = filteredDetail.like;
-    const checkInclude = likeArray.includes(getUID());
-    return checkInclude;
-  };
-
   useEffect(() => {
     if (fetchStatus === true) {
       renderDataWebinar();
     }
-  }, [fetchStatus]);
+  }, [fetchStatus, setFetchStatus]);
 
   return (
     <div className="webinar-page py-4">
@@ -61,7 +62,7 @@ function Webinar() {
           handleKategori={handleKategori}
         />
         <div className="row">
-          {filteredWebinar !== null ? (
+          {filteredWebinar.length !== 0 ? (
             filteredWebinar.map((el) => (
               <div className="col-lg-4 col-md-6" key={el.id}>
                 <div className="card shadow mb-5">
@@ -72,17 +73,14 @@ function Webinar() {
                   <div className="card-body">
                     <span className="">{el.kategori}</span>
                     {checkIfPostLiked(el.id) === true ? (
-                      <p>
+                      <p value={el.id}>
                         <BsHeartFill /> {el.like.length}
                       </p>
                     ) : (
-                      <p>
+                      <p value={el.id}>
                         <BsHeart /> {el.like.length}
                       </p>
                     )}
-                    {/* <span>
-                      {likeLength(el.id) !== 0 ? likeLength(el.id) : null}
-                    </span> */}
                     <h3>
                       <a onClick={handleDetail} data-item={el.id}>
                         {el.judul}
@@ -104,7 +102,7 @@ function Webinar() {
               </div>
             ))
           ) : (
-            <p>Tidak ada data</p>
+            <p className="text-center">Tidak ada data</p>
           )}
         </div>
       </div>

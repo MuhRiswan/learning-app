@@ -1,12 +1,9 @@
 import React from 'react';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import Cookies from 'js-cookie';
-import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import { GlobalContext } from '../context/GlobalContext';
 
 const AdminLogin = () => {
-  const { contextState } = useContext(GlobalContext);
   const navigate = useNavigate();
   const [input, setInput] = useState({
     email: '',

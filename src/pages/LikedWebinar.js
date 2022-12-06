@@ -20,7 +20,8 @@ const LikedWebinar = () => {
 
   const filteredWebinar = useMemo(() => {
     return arrayWebinar.filter((el) => el.like.includes(localUID));
-  }, [arrayWebinar]);
+  }, []);
+
   useEffect(() => {
     if (fetchStatus === true) {
       renderDataWebinar();

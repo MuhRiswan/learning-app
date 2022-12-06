@@ -75,17 +75,26 @@ function ScheduleApp() {
               ></button>
             </div>
             <div className="carousel-inner ">
-              {arrayWebinar !== null ? (
+              {arrayWebinar.length !== 0 ? (
                 arrayWebinar.slice(0, 3).map((el) => (
                   <div className="carousel-item active" key={el.id}>
-                    <img src={el.image} className="d-block w-100" alt="..." />
-                    <div className="carousel-caption">
+                    {/* <a onClick={handleDetail} value={el.id}> */}
+                    <img
+                      onClick={handleDetail}
+                      data-item={el.id}
+                      src={el.image}
+                      className="d-block w-100"
+                      alt="..."
+                    />
+                    {/* </a> */}
+
+                    {/* <div className="carousel-caption">
                       <p>
                         <a onClick={handleDetail} data-item={el.id}>
                           {el.judul}
                         </a>
                       </p>
-                    </div>
+                    </div> */}
                   </div>
                 ))
               ) : (
@@ -128,7 +137,7 @@ function ScheduleApp() {
             </div>
             <div className="webinar__body">
               <div className="row">
-                {arrayWebinar !== null ? (
+                {arrayWebinar.length !== 0 ? (
                   arrayWebinar.slice(0, 3).map((el) => (
                     <div className="col-lg-4 col-md-6" key={el.id}>
                       <div className="card shadow mb-5">
@@ -149,7 +158,7 @@ function ScheduleApp() {
                     </div>
                   ))
                 ) : (
-                  <p>Tidak ada data</p>
+                  <p className="text-center">Tidak ada data</p>
                 )}
               </div>
             </div>
@@ -165,7 +174,7 @@ function ScheduleApp() {
             </div>
             <div className="podcast__body">
               <div className="row">
-                {arrayPodcast !== null ? (
+                {arrayPodcast.length !== 0 ? (
                   arrayPodcast.slice(0, 3).map((el) => (
                     <div className="col-lg-4 col-md-6" key={el.id}>
                       <div className="card shadow mb-5">
@@ -186,7 +195,7 @@ function ScheduleApp() {
                     </div>
                   ))
                 ) : (
-                  <p>Tidak ada data</p>
+                  <p className="text-center">Tidak ada data</p>
                 )}
               </div>
             </div>

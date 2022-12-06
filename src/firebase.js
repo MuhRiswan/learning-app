@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 // Import the functions you need from the SDKs you need
-
+import { useNavigate } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
 import Swal from 'sweetalert2';
 import { getAnalytics } from 'firebase/analytics';
@@ -84,6 +84,9 @@ const registerWithEmailAndPassword = async (
       icon: 'error',
       confirmButtonText: 'OK',
     });
+    setTimeout(() => {
+      window.location.href = '/register';
+    }, '2000');
   }
 };
 
@@ -101,6 +104,9 @@ const logInWithEmailAndPassword = async (email, password) => {
       icon: 'error',
       confirmButtonText: 'OK',
     });
+    setTimeout(() => {
+      window.location.href = '/login';
+    }, '2000');
   }
 };
 

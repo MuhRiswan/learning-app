@@ -6,7 +6,6 @@ export const GlobalContext = createContext();
 
 export const GlobalProvider = (props) => {
   let navigate = useNavigate();
-  const [isLike, setIsLike] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [fetchStatus, setFetchStatus] = useState(true);
   const [fetchStatusPodcast, setFetchStatusPodcast] = useState(true);
@@ -24,6 +23,7 @@ export const GlobalProvider = (props) => {
     kategori: '',
     tanggal: '',
     waktu: '',
+    like: [],
   });
   const [inputPodcast, setInputPodcast] = useState({
     judul: '',
@@ -33,6 +33,7 @@ export const GlobalProvider = (props) => {
     link: '',
     image: '',
     kategori: '',
+    like: [],
   });
 
   const renderDataWebinar = () => {
@@ -99,6 +100,7 @@ export const GlobalProvider = (props) => {
       kategori,
       tanggal,
       waktu,
+      like,
     } = inputWebinar;
 
     if (currentId === -1) {
@@ -112,8 +114,9 @@ export const GlobalProvider = (props) => {
           link_daftar,
           image,
           kategori,
-          tanggal,
+          tanggal: showLocalDate(tanggal),
           waktu,
+          like,
         })
         .then((response) => {
           setFetchStatus(true);
@@ -130,8 +133,9 @@ export const GlobalProvider = (props) => {
           link_daftar,
           image,
           kategori,
-          tanggal,
+          tanggal: showLocalDate(tanggal),
           waktu,
+          like,
         })
         .then((response) => {
           setFetchStatus(true);
@@ -150,12 +154,13 @@ export const GlobalProvider = (props) => {
       kategori: '',
       tanggal: '',
       waktu: '',
+      like: [],
     });
   };
 
   const handleSubmitPodcast = (event) => {
     event.preventDefault();
-    let { judul, sumber, narasumber, deskripsi, link, image, kategori } =
+    let { judul, sumber, narasumber, deskripsi, link, image, kategori, like } =
       inputPodcast;
 
     if (currentId === -1) {
@@ -168,6 +173,7 @@ export const GlobalProvider = (props) => {
           link,
           image,
           kategori,
+          like,
         })
         .then((response) => {
           setFetchStatusPodcast(true);
@@ -183,6 +189,7 @@ export const GlobalProvider = (props) => {
           link,
           image,
           kategori,
+          like,
         })
         .then((response) => {
           setFetchStatusPodcast(true);
@@ -198,6 +205,7 @@ export const GlobalProvider = (props) => {
       link: '',
       image: '',
       kategori: '',
+      like: [],
     });
   };
 

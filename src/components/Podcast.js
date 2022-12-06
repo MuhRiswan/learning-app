@@ -3,7 +3,6 @@ import { GlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import CategoryBtn from './CategoryBtn';
 import { BsHeartFill, BsHeart } from 'react-icons/bs';
-import Cookies from 'js-cookie';
 
 function Podcast() {
   let navigate = useNavigate();
@@ -61,7 +60,7 @@ function Podcast() {
           handleKategori={handleKategori}
         />
         <div className="row">
-          {filteredPodcast !== null ? (
+          {filteredPodcast.length !== 0 ? (
             filteredPodcast.map((el) => (
               <div className="col-lg-4 col-md-6" key={el.id}>
                 <div className="card shadow mb-5">
@@ -90,7 +89,7 @@ function Podcast() {
               </div>
             ))
           ) : (
-            <p>Tidak ada data</p>
+            <p className="text-center">Tidak ada data</p>
           )}
         </div>
       </div>

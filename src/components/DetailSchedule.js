@@ -11,7 +11,7 @@ function DetailSchedule() {
   const [length, setLength] = useState();
   const [likeArray, setLikeArray] = useState([]);
   const { contextState, contextFunctions } = useContext(GlobalContext);
-  const { arrayWebinar, fetchStatus, setFetchStatus } = contextState;
+  const { fetchStatus, setFetchStatus } = contextState;
   const { getUID } = contextFunctions;
   const linkDaftar = () => {
     return `https://${filtered.link_daftar}`;

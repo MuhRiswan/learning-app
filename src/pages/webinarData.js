@@ -43,7 +43,7 @@ const WebinarData = () => {
               </tr>
             </thead>
             <tbody>
-              {arrayWebinar !== null ? (
+              {arrayWebinar.length !== 0 ? (
                 arrayWebinar.map((el) => (
                   <tr key={el.id}>
                     <td>{num++}</td>
@@ -57,7 +57,7 @@ const WebinarData = () => {
                     <td>
                       <img src={el.image} style={{ width: '100px' }} />{' '}
                     </td>
-                    <td>{showLocalDate(el.tanggal)}</td>
+                    <td>{el.tanggal}</td>
                     <td>{el.waktu}</td>
                     <td className="flex gap-2">
                       <button
@@ -79,7 +79,9 @@ const WebinarData = () => {
                 ))
               ) : (
                 <tr>
-                  <td>Tidak ada data</td>
+                  <td colSpan="12" className="text-center">
+                    Tidak ada data
+                  </td>
                 </tr>
               )}
             </tbody>

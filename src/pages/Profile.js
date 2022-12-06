@@ -114,66 +114,71 @@ const Profile = () => {
       <img src={profile.profile_image} />
       <button
         type="button"
-        class="btn btn-primary"
+        className="btn btn-primary"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
-        Launch demo modal
+        Ubah profil
       </button>
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
-                Modal title
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
+                Ubah Profil
               </h1>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <form onSubmit={handleUbahProfil}>
-                <label>
+                <label htmlFor="name" className="form-label">
                   Nama
-                  <input
-                    name="name"
-                    onChange={handleChange}
-                    value={input.name}
-                    type="name"
-                    placeholder="name"
-                  />
                 </label>
-                <label>
-                  Link Foto Profil
-                  <input
-                    name="profile_image"
-                    onChange={handleChange}
-                    value={input.profile_image}
-                    type="profile_image"
-                    placeholder="profile_image"
-                  />
+                <input
+                  className="form-control"
+                  name="name"
+                  onChange={handleChange}
+                  value={input.name}
+                  type="name"
+                  placeholder="Nama"
+                />
+                <label htmlFor="profile_image" className="form-label">
+                  Link foto profil
                 </label>
-                <button type="submit" class="btn btn-primary">
-                  Save changes
+                <textarea
+                  className="form-control"
+                  name="profile_image"
+                  onChange={handleChange}
+                  value={input.profile_image}
+                  type="profile_image"
+                  placeholder="profile_image"
+                />
+                <button
+                  type="submit"
+                  className="btn btn-primary rounded-pill float-end mt-3"
+                >
+                  Simpan
                 </button>
               </form>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn rounded-pill btn-secondary"
                 data-bs-dismiss="modal"
               >
-                Close
+                Tutup
               </button>
             </div>
           </div>

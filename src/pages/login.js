@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, logInWithEmailAndPassword } from '../firebase';
-import { useNavigate } from 'react-router-dom';
+import { logInWithEmailAndPassword } from '../firebase';
+import { useNavigate, Link } from 'react-router-dom';
 import { GlobalContext } from '../context/GlobalContext';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,38 +23,59 @@ const Login = () => {
     event.preventDefault();
 
     let { email, password } = input;
-
-    logInWithEmailAndPassword(email, password);
-    setIsLoggedIn(true);
-    navigate('/');
+    if (email === '' || password === '') {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Email atau password salah',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        allowOutsideClick: false,
+      });
+    } else {
+      logInWithEmailAndPassword(email, password);
+      setIsLoggedIn(true);
+      navigate('/');
+    }
   };
   return (
     <div>
-      <h1>Login</h1>
+      <div className="d-flex justify-content-center">
+        <h1>Login</h1>
 
-      <form onSubmit={handleLogin}>
-        <label>
-          Email
+        <form onSubmit={handleLogin}>
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
           <input
+            className="form-control"
             name="email"
             onChange={handleChange}
             value={input.email}
             type="email"
             placeholder="Email"
           />
-        </label>
-        <label>
-          Password
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
           <input
+            className="form-control"
             name="password"
             onChange={handleChange}
             value={input.password}
             type="password"
             placeholder="Password"
           />
-        </label>
-        <button type="submit">Login</button>
-      </form>
+          <p className="float-start mt-3">
+            Belum punya akun? <Link to="/register">Register</Link>
+          </p>
+          <button
+            className="btn btn-primary rounded-pill float-end mt-3"
+            type="submit"
+          >
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

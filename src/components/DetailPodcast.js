@@ -13,8 +13,7 @@ function DetailPodcast() {
   const [length, setLength] = useState();
   const [likeArray, setLikeArray] = useState([]);
   const { contextState, contextFunctions } = useContext(GlobalContext);
-  const { arrayPodcast, setFetchStatusPodcast, fetchStatusPodcast } =
-    contextState;
+  const { setFetchStatusPodcast, fetchStatusPodcast } = contextState;
   const { getUID } = contextFunctions;
 
   const checkIfPostLiked = () => {

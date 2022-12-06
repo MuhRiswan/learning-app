@@ -1,18 +1,19 @@
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 
 const PodcastData = () => {
   let num = 1;
   const { contextState, contextFunctions } = useContext(GlobalContext);
-  const { arrayPodcast, fetchStatusPodcast } = contextState;
+  const { arrayPodcast, fetchStatusPodcast, setFetchStatusPodcast } =
+    contextState;
   const { renderDataPodcast, handleEditPodcast, handleDeletePodcast } =
     contextFunctions;
+  console.log(arrayPodcast);
   useEffect(() => {
     if (fetchStatusPodcast === true) {
       renderDataPodcast();
     }
-  }, []);
+  }, [fetchStatusPodcast, setFetchStatusPodcast]);
   return (
     <div className="home container-fluid">
       <div className="">
@@ -34,7 +35,7 @@ const PodcastData = () => {
               </tr>
             </thead>
             <tbody>
-              {arrayPodcast !== null ? (
+              {arrayPodcast.length !== 0 ? (
                 arrayPodcast.map((el) => (
                   <tr key={el.id}>
                     <td>{num++}</td>
@@ -67,7 +68,9 @@ const PodcastData = () => {
                 ))
               ) : (
                 <tr>
-                  <td>Tidak ada data</td>
+                  <td colSpan="9" className="text-center">
+                    Tidak ada data
+                  </td>
                 </tr>
               )}
             </tbody>

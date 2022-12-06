@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { useParams } from 'react-router-dom';
 import Kategori from '../kategori.json';
@@ -7,13 +7,7 @@ import Kategori from '../kategori.json';
 const AdminAddDataWebinar = () => {
   let { IdData } = useParams();
   const { contextState, contextFunctions } = useContext(GlobalContext);
-  const {
-    arrayWebinar,
-    inputWebinar,
-    setInputWebinar,
-    fetchStatus,
-    setFetchStatus,
-  } = contextState;
+  const { arrayWebinar, inputWebinar, setInputWebinar } = contextState;
   const { handleChangeWebinar, handleSubmitWebinar } = contextFunctions;
 
   useEffect(() => {
@@ -32,6 +26,7 @@ const AdminAddDataWebinar = () => {
             kategori: response.data.kategori,
             tanggal: response.data.tanggal,
             waktu: response.data.waktu,
+            like: response.data.like,
           });
         });
     }
