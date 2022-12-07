@@ -1,75 +1,48 @@
-import React from 'react';
-import { useState } from 'react';
-import { registerWithEmailAndPassword } from '../firebase';
+import React, { useContext, useState } from 'react';
+import { logInWithEmailAndPassword } from '../firebase';
 import { useNavigate, Link } from 'react-router-dom';
+import { GlobalContext } from '../context/GlobalContext';
 import Swal from 'sweetalert2';
 
-const Register = () => {
+const Login = () => {
   const navigate = useNavigate();
+  const { contextState } = useContext(GlobalContext);
+  const { setIsLoggedIn } = contextState;
   const [input, setInput] = useState({
-    name: '',
-    profile_image: '',
     email: '',
     password: '',
   });
-
   const handleChange = (event) => {
     let value = event.target.value;
     let name = event.target.name;
+
     setInput({ ...input, [name]: value });
   };
 
-  const handleRegister = (event) => {
+  const handleLogin = (event) => {
     event.preventDefault();
-    let { name, profile_image, email, password } = input;
-    if (
-      email === '' ||
-      profile_image === '' ||
-      password === '' ||
-      name === ''
-    ) {
+
+    let { email, password } = input;
+    if (email === '' || password === '') {
       Swal.fire({
         title: 'Error!',
-        text: 'Inputan tidak boleh kosong!',
+        text: 'Email atau password salah',
         icon: 'error',
         confirmButtonText: 'OK',
         allowOutsideClick: false,
       });
     } else {
-      registerWithEmailAndPassword(name, profile_image, email, password);
+      logInWithEmailAndPassword(email, password);
+      setIsLoggedIn(true);
       navigate('/');
     }
   };
-
   return (
     <div>
       <div className="d-flex justify-content-center">
-        <h1>Register</h1>
+        <h1>Login</h1>
 
-        <form onSubmit={handleRegister}>
-          <label htmlFor="email" className="form-label">
-            Nama
-          </label>
-          <input
-            className="form-control"
-            name="name"
-            onChange={handleChange}
-            value={input.name}
-            type="name"
-            placeholder="Nama"
-          />
-          <label htmlFor="profile_image" className="form-label">
-            Link foto profil
-          </label>
-          <input
-            className="form-control"
-            name="profile_image"
-            onChange={handleChange}
-            value={input.profile_image}
-            type="profile_image"
-            placeholder="Link foto profil"
-          />
-
+        <form onSubmit={handleLogin}>
           <label htmlFor="email" className="form-label">
             Email
           </label>
@@ -93,13 +66,13 @@ const Register = () => {
             placeholder="Password"
           />
           <p className="float-start mt-3">
-            Sudah punya akun? <Link to="/login">Login</Link>
+            Belum punya akun? <Link to="/register">Register</Link>
           </p>
           <button
             className="btn btn-primary rounded-pill float-end mt-3"
             type="submit"
           >
-            Register
+            Login
           </button>
         </form>
       </div>
@@ -107,4 +80,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
