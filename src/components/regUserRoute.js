@@ -1,7 +1,6 @@
 import Cookies from 'js-cookie';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import AdminLoginPage from '../pages/adminLogin';
 
 const RegulerUserRoute = (props) => {
   if (Cookies.get('admin') !== undefined) {

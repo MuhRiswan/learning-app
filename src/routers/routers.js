@@ -8,8 +8,7 @@ import WebinarData from '../pages/webinarData';
 import PodcastData from '../pages/podcastData';
 import AdminAddDataWebinar from '../pages/adminAddDataWebinar';
 import AdminAddDataPodcast from '../pages/adminAddDataPodcast';
-// import Layout from '../components/Layout';
-// import LoginRoute from '../components/LoginRoute';
+import LikedWebinar from '../pages/LikedWebinar';
 import DetailSchedule from '../components/DetailSchedule';
 import DetailPodcast from '../components/DetailPodcast';
 import RegisterRoute from '../components/registerRoute';
@@ -21,16 +20,8 @@ import Podcast from '../components/Podcast';
 import LoginRoute from '../components/LoginRoute';
 import RegulerUserRoute from '../components/regUserRoute';
 import Profile from '../pages/Profile';
-// import LayoutDashboard from '../components/LayoutDashboard';
-// import DataTable from '../components/DataTable';
-// import DataForm from '../components/DataForm';
-// import Profile from '../components/Profile';
-// import ChangePass from '../components/ChangePass';
-// import Navbar from '../components/Navbar';
-// import Dashboard from '../pages/Dashboard';
-// import DashboardRoute from '../components/DashboardRoute';
-// import DetailPage from '../pages/DetailPage';
-// import Page404 from '../components/Page404';
+import LikedPodcast from '../pages/LikedPodcast';
+import Page404 from '../components/Page404';
 
 const Routers = () => {
   return (
@@ -38,7 +29,7 @@ const Routers = () => {
       <BrowserRouter>
         <GlobalProvider>
           <Routes>
-            {/* <Route path="*" element={<Page404 />} /> */}
+            <Route path="*" element={<Page404 />} />
             <Route
               path="/"
               element={
@@ -91,7 +82,22 @@ const Routers = () => {
                 </RegulerUserRoute>
               }
             />
-
+            <Route
+              path="/webinar-disukai"
+              element={
+                <RegulerUserRoute>
+                  <LikedWebinar />
+                </RegulerUserRoute>
+              }
+            />
+            <Route
+              path="/podcast-disukai"
+              element={
+                <RegulerUserRoute>
+                  <LikedPodcast />
+                </RegulerUserRoute>
+              }
+            />
             <Route path="/adminLogin" element={<AdminLoginRoute />} />
             <Route
               path="/admin/adminDashboard"

@@ -1,29 +1,20 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
-import { useNavigate, Link, useParams } from 'react-router-dom';
-import { Card, Row, Col, Container, Button } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 import Kategori from '../kategori.json';
 
 const AdminAddDataPodcast = () => {
   let { IdData } = useParams();
   const { contextState, contextFunctions } = useContext(GlobalContext);
-  const {
-    arrayWebinar,
-    inputPodcast,
-    setInputPodcast,
-    fetchStatus,
-    setFetchStatus,
-  } = contextState;
+  const { inputPodcast, setInputPodcast } = contextState;
   const { handleChangePodcast, handleSubmitPodcast } = contextFunctions;
 
   useEffect(() => {
-    console.log(IdData);
     if (IdData !== undefined) {
       axios
         .get(`https://webinar-server-new.herokuapp.com/podcast/${IdData}`)
         .then((response) => {
-          console.log(response);
           setInputPodcast({
             judul: response.data.judul,
             sumber: response.data.sumber,
@@ -32,6 +23,7 @@ const AdminAddDataPodcast = () => {
             link: response.data.link,
             image: response.data.image,
             kategori: response.data.kategori,
+            like: response.data.like,
           });
         });
     }
