@@ -1,10 +1,18 @@
 .schedule .carousel-item {
-  height: 480px;
+  width: 100%;
+  height: 580px;
 }
 
 .schedule .carousel-item img {
   height: 100%;
-  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.card {
+  margin-bottom: 10px;
+  min-height: 635px;
 }
 
 .card:hover {
@@ -20,7 +28,8 @@
 
 .card .card-title img {
   height: 100%;
-  object-fit: cover;
+  background-size: cover;
+  background-position: center;
 }
 
 .card .card-body h3 {
@@ -30,16 +39,27 @@
   overflow: hidden;
 }
 
+.card .card-body h3:hover {
+  color: #33ca47;
+  cursor: pointer;
+}
+
 .card .card-body .deskripsi {
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  min-height: 100px;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 /* Detail Page */
+.detail-page .detail-page__image {
+  width: 100%;
+  text-align: center;
+}
+
 .detail-page .detail-page__image img {
-  max-width: 750px;
+  width: 640px;
 }
 
 .detail-page ul li {
@@ -51,21 +71,35 @@
   font-weight: 600;
 }
 
-/* Webinar Page*/
 .webinar-page .kategori-list button,
 .podcast-page .kategori-list button {
   padding: 5px;
+  margin: 5px;
   font-weight: 500;
   background-color: #f5e265;
   margin-right: 25px;
   border-radius: 8px;
 }
 
-@media screen and (min-width: 800px) {
+.login {
+  width: 400px;
+  height: min-content;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #f2df3a;
+  margin: 50px auto;
+  color: #393e46;
+  font-weight: bold;
 }
 
-@media screen and (min-width: 650px) {
+.login form {
+  font-size: 20px;
 }
+
+
+@media screen and (min-width: 800px) {}
+
+@media screen and (min-width: 650px) {}
 
 @media (min-width: 320px) {
   .detail-page .detail-page__image {
@@ -87,5 +121,11 @@
 
   .detail-page ul li {
     list-style: none;
+  }
+
+  .webinar-page .kategori-list,
+  .podcast-page .kategori-list {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

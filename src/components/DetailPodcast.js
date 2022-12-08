@@ -4,7 +4,7 @@ import { GlobalContext } from '../context/GlobalContext';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { BsHeartFill, BsHeart } from 'react-icons/bs';
+import { BsHeartFill, BsHeart, BsArrowLeftShort } from 'react-icons/bs';
 
 function DetailPodcast() {
   let navigate = useNavigate();
@@ -82,29 +82,23 @@ function DetailPodcast() {
         <img className="img-fluid rounded-3" src={filtered.image} />
       </div>
       <div className="detail-page__body container text-lg-start mt-5">
-        <button onClick={handleback}>back</button>
         {checkIfPostLiked(filtered.id) ? (
-          <button value={filtered.id} onClick={handleDisLike}>
+          <button className='text-center' value={filtered.id} onClick={handleDisLike}>
             <BsHeartFill /> {length}
           </button>
         ) : (
-          <button value={filtered.id} onClick={handleLike}>
+          <button className='text-center rounded' value={filtered.id} onClick={handleLike}>
             <BsHeart /> {length}
           </button>
         )}
         <h2 className="fw-bold mb-3">{filtered.judul}</h2>
-        {/* {judul} */}
         <span className="kategori py-2 px-4 text-center rounded-3">
           {filtered.kategori}
         </span>
-        {/* {kategori} */}
-        <h4 className="mt-3 fw-bold">Narasumber: {filtered.narasumber}</h4>
-        {/* {narasumber} */}
+        <h5 className="mt-3 fw-bold">Narasumber: {filtered.narasumber}</h5>
         <p className="fw-500 fs-5">Sumber: {filtered.sumber}</p>
-        {/* {sumber} */}
         <div className="detail-page__desrkipsi">
           <span className="fw-bold">Deskripsi:</span>
-          {/* {deskripsi} */}
           <p>{filtered.deskripsi}</p>
         </div>
         <a
@@ -115,7 +109,6 @@ function DetailPodcast() {
         >
           Daftar
         </a>
-        {/* daftar */}
       </div>
     </div>
   );

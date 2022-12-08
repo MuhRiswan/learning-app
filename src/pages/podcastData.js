@@ -17,7 +17,7 @@ const PodcastData = () => {
   return (
     <div className="home container-fluid">
       <div className="">
-        <p>Admin Dashboard</p>
+        <h2 className='fw-bold text-center my-4'>Data Podcast</h2>
         <div className="table-data">
           <table className="table table-hover table-dark table-bordered table-striped">
             <thead>

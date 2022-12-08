@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { GlobalContext } from '../context/GlobalContext';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import { BsHeartFill, BsHeart } from 'react-icons/bs';
+import { BsHeartFill, BsHeart, BsArrowLeftShort } from 'react-icons/bs';
 
 function DetailSchedule() {
   const { id } = useParams();
@@ -80,35 +80,27 @@ function DetailSchedule() {
       </div>
       <div className="detail-page__body container text-lg-start mt-5">
         {checkIfPostLiked(filtered.id) ? (
-          <button value={filtered.id} onClick={handleDisLike}>
+          <button className='text-center' value={filtered.id} onClick={handleDisLike}>
             <BsHeartFill /> {length}
           </button>
         ) : (
-          <button value={filtered.id} onClick={handleLike}>
+          <button className='text-center rounded' value={filtered.id} onClick={handleLike}>
             <BsHeart /> {length}
           </button>
         )}
         <h2 className="fw-bold mb-3">{filtered.judul}</h2>
-        {/* {judul} */}
         <span className="kategori py-2 px-4 text-center rounded-3">
           {filtered.kategori}
         </span>
-        {/* {kategori} */}
-        <h4 className="mt-3 fw-bold">Narasumber: {filtered.narasumber}</h4>
-        {/* {narasumber} */}
+        <h5 className="mt-3 fw-bold">Narasumber: {filtered.narasumber}</h5>
         <p className="fw-500 fs-5">Sumber: {filtered.sumber}</p>
-        {/* {sumber} */}
         <ul>
           <li>Hari / Tanggal: {filtered.tanggal}</li>
-          {/* {tanggal} */}
           <li>Waktu: {filtered.waktu}</li>
-          {/* {waktu} */}
           <li>Via: {filtered.via}</li>
-          {/* {via} */}
         </ul>
         <div className="detail-page__desrkipsi">
           <span className="fw-bold">Deskripsi:</span>
-          {/* {deskripsi} */}
           <p>{filtered.deskripsi}</p>
         </div>
         <a
@@ -119,7 +111,6 @@ function DetailSchedule() {
         >
           Daftar
         </a>
-        {/* daftar */}
       </div>
     </div>
   );

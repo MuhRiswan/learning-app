@@ -129,9 +129,9 @@ function ScheduleApp() {
         </section>
         <section className="webinar-page py-5 mt-5">
           <div className="webinar">
-            <div className="webinar__head d-flex justify-content-between mb-2">
-              <h2>Webinar</h2>
-              <a onClick={handleShowWebinar} className="fw-bold">
+            <div className="webinar__head d-flex justify-content-between">
+              <h2 className='fw-bold'>Webinar</h2>
+              <a onClick={handleShowWebinar} className="fw-bold fs-3">
                 Show All
               </a>
             </div>
@@ -140,7 +140,7 @@ function ScheduleApp() {
                 {arrayWebinar.length !== 0 ? (
                   arrayWebinar.slice(0, 3).map((el) => (
                     <div className="col-lg-4 col-md-6" key={el.id}>
-                      <div className="card shadow mb-5">
+                      <div className="card shadow mb-4">
                         <div className="card-title">
                           <img src={el.image} className="card-img-top" alt="" />
                         </div>
@@ -167,8 +167,8 @@ function ScheduleApp() {
         <section className="podcast-page py-5 mt-5">
           <div className="podcast">
             <div className="podcast__head d-flex justify-content-between mb-2">
-              <h2>Podcast</h2>
-              <a onClick={handleShowPodcast} className="fw-bold">
+              <h2 className='fw-bold'>Podcast</h2>
+              <a onClick={handleShowPodcast} className="fw-bold fs-3">
                 Show All
               </a>
             </div>
@@ -177,7 +177,7 @@ function ScheduleApp() {
                 {arrayPodcast.length !== 0 ? (
                   arrayPodcast.slice(0, 3).map((el) => (
                     <div className="col-lg-4 col-md-6" key={el.id}>
-                      <div className="card shadow mb-5">
+                      <div className="card shadow mb-4">
                         <div className="card-title">
                           <img src={el.image} className="card-img-top" alt="" />
                         </div>

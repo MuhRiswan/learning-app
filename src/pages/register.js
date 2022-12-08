@@ -42,11 +42,9 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <div className="d-flex justify-content-center">
-        <h1>Register</h1>
-
-        <form onSubmit={handleRegister}>
+    <div className="login d-flex justify-content-center">
+      <form onSubmit={handleRegister}>
+        <div className="form-group">
           <label htmlFor="email" className="form-label">
             Nama
           </label>
@@ -58,6 +56,8 @@ const Register = () => {
             type="name"
             placeholder="Nama"
           />
+        </div>
+        <div className="form-group">
           <label htmlFor="profile_image" className="form-label">
             Link foto profil
           </label>
@@ -69,7 +69,8 @@ const Register = () => {
             type="profile_image"
             placeholder="Link foto profil"
           />
-
+        </div>
+        <div className="form-group">
           <label htmlFor="email" className="form-label">
             Email
           </label>
@@ -81,6 +82,8 @@ const Register = () => {
             type="email"
             placeholder="Email"
           />
+        </div>
+        <div className="form-group">
           <label htmlFor="password" className="form-label">
             Password
           </label>
@@ -92,17 +95,19 @@ const Register = () => {
             type="password"
             placeholder="Password"
           />
-          <p className="float-start mt-3">
-            Sudah punya akun? <Link to="/login">Login</Link>
+        </div>
+        <div className="form-group">
+          <p className="float-start mt-3 me-2">
+            <Link to="/login">Login </Link>
           </p>
           <button
-            className="btn btn-primary rounded-pill float-end mt-3"
+            className="btn btn-success rounded-pill float-end mt-3"
             type="submit"
           >
             Register
           </button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };
