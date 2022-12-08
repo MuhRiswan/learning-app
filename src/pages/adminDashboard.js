@@ -4,7 +4,7 @@ const AdminDashboard = () => {
   return (
     <div className="home container-fluid">
       <div className="">
-        <p>Admin Dashboard</p>
+        <h2 className='fw-bold text-center my-4'>Dashboard Admin</h2>
       </div>
     </div>
   );

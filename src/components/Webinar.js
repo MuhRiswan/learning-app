@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import CategoryBtn from './CategoryBtn';
 import { BsHeartFill, BsHeart } from 'react-icons/bs';
 
+
 function Webinar() {
   let navigate = useNavigate();
   const [kategori, setKategori] = useState('');
@@ -55,7 +56,11 @@ function Webinar() {
   return (
     <div className="webinar-page py-4">
       <div className="container">
-        <h2>Webinar </h2>
+        <div className="webinar__head d-flex justify-content-between">
+          <h2 className='fw-bold'>Webinar</h2>
+          <a className="fw-bold fs-1">
+          </a>
+        </div>
         <CategoryBtn
           kategori={kategori}
           handleClear={handleClear}
@@ -65,7 +70,7 @@ function Webinar() {
           {filteredWebinar.length !== 0 ? (
             filteredWebinar.map((el) => (
               <div className="col-lg-4 col-md-6" key={el.id}>
-                <div className="card shadow mb-5">
+                <div className="card shadow mb-4">
                   <div className="card-title">
                     <img src={el.image} className="card-img-top" alt="" />
                   </div>

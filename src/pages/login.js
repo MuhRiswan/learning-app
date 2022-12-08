@@ -38,11 +38,11 @@ const Login = () => {
     }
   };
   return (
-    <div>
-      <div className="d-flex justify-content-center">
-        <h1>Login</h1>
+    <div className="login d-flex justify-content-center">
 
-        <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin}>
+        <h2 className='text-center'>Login</h2>
+        <div className='form-group'>
           <label htmlFor="email" className="form-label">
             Email
           </label>
@@ -54,6 +54,8 @@ const Login = () => {
             type="email"
             placeholder="Email"
           />
+        </div>
+        <div className='form-group'>
           <label htmlFor="password" className="form-label">
             Password
           </label>
@@ -66,17 +68,18 @@ const Login = () => {
             placeholder="Password"
           />
           <p className="float-start mt-3">
-            Belum punya akun? <Link to="/register">Register</Link>
+            <Link to="/register">Register</Link>
           </p>
           <button
-            className="btn btn-primary rounded-pill float-end mt-3"
+            className="btn btn-success rounded-pill float-end mt-3"
             type="submit"
           >
-            Login
+            Submit
           </button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
+
   );
 };
 

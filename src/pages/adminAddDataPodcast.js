@@ -30,8 +30,8 @@ const AdminAddDataPodcast = () => {
   }, []);
   return (
     <div className="home container-fluid">
-      <div className="">
-        <p>Admin Input Data Podcast</p>
+      <div className="container">
+        <h2 className='text-center'>Admin Input Data Podcast</h2>
         <form onSubmit={handleSubmitPodcast} className="row g-3">
           <div className="col-12">
             <label htmlFor="judul" className="form-label">
@@ -110,7 +110,7 @@ const AdminAddDataPodcast = () => {
 
           <div className=" col-md-4">
             <label htmlFor="image" className="form-label">
-              Link foto(link)
+              Link foto
             </label>
             <input
               type="text"

@@ -6,13 +6,13 @@ const CategoryBtn = ({ kategori, handleKategori, handleClear }) => {
   return (
     <div className="kategori-list d-flex my-4">
       {kategori !== '' ? (
-        <button onClick={handleClear}>
+        <button className='kategori py-2 px-4 text-center rounded-3' onClick={handleClear}>
           {kategori}
-          <MdCancel />
+          <MdCancel className='icon-kategori fw-bold fs-5 ms-2' />
         </button>
       ) : null}
       {Kategori.map((e, key) => (
-        <button key={key} value={e} onClick={handleKategori}>
+        <button className='kategori py-2 px-4 text-center rounded-3' key={key} value={e} onClick={handleKategori}>
           {e}
         </button>
       ))}
