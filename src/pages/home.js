@@ -33,11 +33,11 @@ const Home = () => {
     <>
       <div className="home container-fluid">
         <div className="">
-          <p>Home</p>
           {logoutBtn()}
         </div>
       </div>
-      <ScheduleApp />
+      
+      <ScheduleApp/>
     </>
   );
 };
