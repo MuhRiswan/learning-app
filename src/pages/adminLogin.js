@@ -1,13 +1,9 @@
 import React from 'react';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import Cookies from 'js-cookie';
-import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import { GlobalContext } from '../context/GlobalContext';
 
 const AdminLogin = () => {
-  const { contextState } = useContext(GlobalContext);
-  const { user, setUser } = contextState;
   const navigate = useNavigate();
   const [input, setInput] = useState({
     email: '',
@@ -29,13 +25,13 @@ const AdminLogin = () => {
       Cookies.set('admin', '1', { expires: 1 });
       navigate('/admin/adminDashboard');
     }
-    console.log(email, password);
   };
 
   return (
-    <div className="d-flex justify-content-center">
+    <div className="login d-flex justify-content-center">
       <form onSubmit={handleLogin}>
-        <div className=" col-12">
+        <h2 className='text-center'>Login</h2>
+        <div className="form-group">
           <label htmlFor="email" className="form-label">
             Email
           </label>
@@ -49,7 +45,7 @@ const AdminLogin = () => {
           />
         </div>
         <br />
-        <div className=" col-12">
+        <div className=" form-group">
           <label htmlFor="password" className="form-label">
             Password
           </label>
@@ -62,12 +58,8 @@ const AdminLogin = () => {
             placeholder="Password..."
           />
         </div>
-
-        <p className="float-start mt-3">
-          <Link to="/register">Register</Link>
-        </p>
         <button
-          className="btn btn-primary rounded-pill float-end mt-3"
+          className="btn btn-success rounded-pill float-end mt-3"
           type="submit"
         >
           Submit

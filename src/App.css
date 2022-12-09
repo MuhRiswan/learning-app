@@ -1,5 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
 .App {
-  text-align: center;
+  font-family: Roboto;
+  color: #393e46;
+}
+
+.icon-button {
+  font-size: 50px;
+}
+
+.icon-kategori {
+  color: #dc3545;
+}
+
+.App a {
+  color: #393e46;
+  text-decoration: none;
+}
+
+.App a:hover {
+  color: #737880;
+  cursor: pointer;
+}
+
+.App p {
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .App-logo {
@@ -32,6 +58,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -49,6 +76,14 @@
 .table-data table th:first-child {
   position: sticky;
   left: 0;
+}
+
+.page-404 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
 }
 
 /* .sticky-col {
