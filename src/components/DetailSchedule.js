@@ -80,11 +80,19 @@ function DetailSchedule() {
       </div>
       <div className="detail-page__body container text-lg-start mt-5">
         {checkIfPostLiked(filtered.id) ? (
-          <button className='text-center' value={filtered.id} onClick={handleDisLike}>
+          <button
+            className="text-center rounded"
+            value={filtered.id}
+            onClick={handleDisLike}
+          >
             <BsHeartFill /> {length}
           </button>
         ) : (
-          <button className='text-center rounded' value={filtered.id} onClick={handleLike}>
+          <button
+            className="text-center rounded"
+            value={filtered.id}
+            onClick={handleLike}
+          >
             <BsHeart /> {length}
           </button>
         )}

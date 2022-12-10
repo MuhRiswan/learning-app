@@ -2,12 +2,24 @@ import React, { createContext, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import { db } from '../firebase';
+import {
+  query,
+  collection,
+  getDocs,
+  where,
+  doc,
+  updateDoc,
+} from 'firebase/firestore';
+import Swal from 'sweetalert2';
+
 export const GlobalContext = createContext();
 
 export const GlobalProvider = (props) => {
   let navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [fetchStatus, setFetchStatus] = useState(true);
+  const [profile, setProfile] = useState([]);
   const [fetchStatusPodcast, setFetchStatusPodcast] = useState(true);
   const [arrayWebinar, setArrayWebinar] = useState([]);
   const [arrayPodcast, setArrayPodcast] = useState([]);
@@ -249,6 +261,25 @@ export const GlobalProvider = (props) => {
     });
     return newDate;
   };
+  const fetchProfile = async () => {
+    try {
+      const localUser = JSON.parse(Cookies.get('user'));
+      const q = query(
+        collection(db, 'users'),
+        where('uid', '==', localUser.uid)
+      );
+      const doc = await getDocs(q);
+      const data = doc.docs[0].data();
+      setProfile(data);
+    } catch (err) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'An error occured while fetching user data',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    }
+  };
 
   const contextState = {
     isLoggedIn,
@@ -265,6 +296,9 @@ export const GlobalProvider = (props) => {
     setInputWebinar,
     inputPodcast,
     setInputPodcast,
+    profile,
+    setProfile,
+    fetchProfile,
   };
 
   const contextFunctions = {

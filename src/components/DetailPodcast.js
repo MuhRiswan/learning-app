@@ -84,7 +84,7 @@ function DetailPodcast() {
       <div className="detail-page__body container text-lg-start mt-5">
         {checkIfPostLiked(filtered.id) ? (
           <button
-            className="text-center"
+            className="text-center rounded"
             value={filtered.id}
             onClick={handleDisLike}
           >

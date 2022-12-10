@@ -37,9 +37,9 @@ const Routers = () => {
               element={
                 // <Layout>
                 <>
-                <Navigation/>
+                  <Navigation />
                   <Home />
-                <Footer/>
+                  <Footer />
                 </>
                 // </Layout>
               }
@@ -49,9 +49,9 @@ const Routers = () => {
               element={
                 // <Layout>
                 <>
-                <Navigation/>
+                  <Navigation />
                   <Webinar />
-                <Footer/>
+                  <Footer />
                 </>
                 // </Layout>
               }
@@ -61,9 +61,9 @@ const Routers = () => {
               element={
                 // <Layout>
                 <>
-                  <Navigation/>
-                    <DetailSchedule />
-                  <Footer/>
+                  <Navigation />
+                  <DetailSchedule />
+                  <Footer />
                 </>
                 // </Layout>
               }
@@ -73,9 +73,9 @@ const Routers = () => {
               element={
                 // <Layout>
                 <>
-                <Navigation/>
+                  <Navigation />
                   <Podcast />
-                <Footer/>
+                  <Footer />
                 </>
                 // </Layout>
               }
@@ -85,9 +85,9 @@ const Routers = () => {
               element={
                 // <Layout>
                 <>
-                <Navigation/>
+                  <Navigation />
                   <DetailPodcast />
-                <Footer/>
+                  <Footer />
                 </>
                 // </Layout>
               }
@@ -100,7 +100,9 @@ const Routers = () => {
               path="/profile"
               element={
                 <RegulerUserRoute>
+                  <Navigation />
                   <Profile />
+                  <Footer />
                 </RegulerUserRoute>
               }
             />
@@ -108,7 +110,9 @@ const Routers = () => {
               path="/webinar-disukai"
               element={
                 <RegulerUserRoute>
+                  <Navigation />
                   <LikedWebinar />
+                  <Footer />
                 </RegulerUserRoute>
               }
             />
@@ -116,7 +120,9 @@ const Routers = () => {
               path="/podcast-disukai"
               element={
                 <RegulerUserRoute>
+                  <Navigation />
                   <LikedPodcast />
+                  <Footer />
                 </RegulerUserRoute>
               }
             />

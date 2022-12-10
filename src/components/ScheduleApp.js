@@ -34,7 +34,7 @@ function ScheduleApp() {
 
   const handleShowPodcast = () => {
     navigate(`/podcast`);
-    setFetchStatus(true);
+    setFetchStatusPodcast(true);
   };
 
   useEffect(() => {
@@ -83,7 +83,7 @@ function ScheduleApp() {
                       onClick={handleDetail}
                       data-item={el.id}
                       src={el.image}
-                      className="d-block w-100"
+                      className="d-block w-100 img-hero"
                       alt="..."
                     />
                     {/* </a> */}
