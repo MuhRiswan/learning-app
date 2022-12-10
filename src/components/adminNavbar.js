@@ -24,8 +24,8 @@ const AdminNavbar = () => {
     <div className="home">
       <nav className="navbar navbar-light navbar-expand-md bg-faded justify-content-center shadow-sm p-3 mb-5 bg-body rounded">
         <div className="container">
-          <a href="/" className="navbar-brand d-flex w-50 me-auto fw-bold fs-4">
-            Home Page
+          <a href="#" className="navbar-brand d-flex w-50 me-auto fw-bold fs-4">
+            Home Admin
           </a>
           <button
             className="navbar-toggler"
@@ -125,7 +125,7 @@ const AdminNavbar = () => {
                     aria-labelledby="navbarScrollingDropdown"
                   >
                     <li className="mb-2">
-                      <button className="dropdown-item">Profile</button>
+                      <button className="dropdown-item">Admin</button>
                     </li>
                     <li>
                       <button

@@ -54,7 +54,7 @@ function Podcast() {
     <div className="podcast-page py-4">
       <div className="container">
         <div className="podcast__head d-flex justify-content-between mb-2">
-          <h2 className='fw-bold'>Podcast</h2>
+          <h2 className="fw-bold">Podcast</h2>
         </div>
         <CategoryBtn
           kategori={kategori}
@@ -65,7 +65,7 @@ function Podcast() {
           {filteredPodcast.length !== 0 ? (
             filteredPodcast.map((el) => (
               <div className="col-lg-4 col-md-6" key={el.id}>
-                <div className="card shadow mb-4">
+                <div className="card card-item shadow mb-4">
                   <div className="card-title">
                     <img src={el.image} className="card-img-top" alt="" />
                   </div>

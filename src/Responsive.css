@@ -10,41 +10,41 @@
   cursor: pointer;
 }
 
-.card {
+.card-item {
   margin-bottom: 10px;
   min-height: 635px;
 }
 
-.card:hover {
+.card-item:hover {
   transition: all 0.3s ease;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
 }
 
-.card .card-title {
+.card-item .card-title {
   height: 250px;
 }
 
-.card .card-title img {
+.card-item .card-title img {
   height: 100%;
   background-size: cover;
   background-position: center;
 }
 
-.card .card-body h3 {
+.card-item .card-body h3 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.card .card-body h3:hover {
+.card-item .card-body h3:hover {
   color: #33ca47;
   cursor: pointer;
 }
 
-.card .card-body .deskripsi {
+.card-item .card-body .deskripsi {
   display: -webkit-box;
   min-height: 100px;
   -webkit-line-clamp: 4;
@@ -96,10 +96,11 @@
   font-size: 20px;
 }
 
+@media screen and (min-width: 800px) {
+}
 
-@media screen and (min-width: 800px) {}
-
-@media screen and (min-width: 650px) {}
+@media screen and (min-width: 650px) {
+}
 
 @media (min-width: 320px) {
   .detail-page .detail-page__image {
