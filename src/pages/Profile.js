@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { auth, db } from '../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
@@ -12,8 +12,11 @@ import {
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
+import { GlobalContext } from '../context/GlobalContext';
 
 const Profile = () => {
+  const { contextState } = useContext(GlobalContext);
+  const { profile, setProfile } = contextState;
   const localUser = JSON.parse(Cookies.get('user'));
   const [input, setInput] = useState({
     name: '',
@@ -21,7 +24,6 @@ const Profile = () => {
   });
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
-  const [profile, setProfile] = useState([]);
   const fetchProfile = async () => {
     try {
       const q = query(

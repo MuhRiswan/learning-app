@@ -44,6 +44,7 @@ const Register = () => {
   return (
     <div className="login d-flex justify-content-center">
       <form onSubmit={handleRegister}>
+        <h2 className="text-center">Register</h2>
         <div className="form-group">
           <label htmlFor="email" className="form-label">
             Nama

@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
-
 .App {
   font-family: Roboto;
   color: #393e46;
@@ -50,15 +49,10 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }
@@ -86,6 +80,36 @@
   min-height: 100vh;
 }
 
+.card-home-admin {
+  min-height: 250px;
+}
+
+.icon-font {
+  font-size: 1.4rem;
+}
+
+.icon-font:hover {
+  color: #dfdfdf;
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.redirect-btn {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.img-hero:hover {
+  transform: scale(1.1);
+}
 /* .sticky-col {
   position: -webkit-sticky;
   position: sticky;

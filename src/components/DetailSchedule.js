@@ -74,17 +74,25 @@ function DetailSchedule() {
   }, [fetchStatus]);
 
   return (
-    <div className="detail-page py-5">
+    <div className="detail-page py-4">
       <div className="detail-page__image px-5 py-2">
         <img className="img-fluid rounded-3" src={filtered.image} />
       </div>
       <div className="detail-page__body container text-lg-start mt-5">
         {checkIfPostLiked(filtered.id) ? (
-          <button className='text-center' value={filtered.id} onClick={handleDisLike}>
+          <button
+            className="text-center rounded"
+            value={filtered.id}
+            onClick={handleDisLike}
+          >
             <BsHeartFill /> {length}
           </button>
         ) : (
-          <button className='text-center rounded' value={filtered.id} onClick={handleLike}>
+          <button
+            className="text-center rounded"
+            value={filtered.id}
+            onClick={handleLike}
+          >
             <BsHeart /> {length}
           </button>
         )}
