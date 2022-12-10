@@ -22,6 +22,8 @@ import RegulerUserRoute from '../components/regUserRoute';
 import Profile from '../pages/Profile';
 import LikedPodcast from '../pages/LikedPodcast';
 import Page404 from '../components/Page404';
+import Navigation from '../components/Navigation';
+import Footer from '../components/Footer';
 
 const Routers = () => {
   return (
@@ -34,7 +36,11 @@ const Routers = () => {
               path="/"
               element={
                 // <Layout>
-                <Home />
+                <>
+                <Navigation/>
+                  <Home />
+                <Footer/>
+                </>
                 // </Layout>
               }
             />
@@ -42,7 +48,11 @@ const Routers = () => {
               path="/webinar"
               element={
                 // <Layout>
-                <Webinar />
+                <>
+                <Navigation/>
+                  <Webinar />
+                <Footer/>
+                </>
                 // </Layout>
               }
             />
@@ -50,7 +60,11 @@ const Routers = () => {
               path="/webinar/:id"
               element={
                 // <Layout>
-                <DetailSchedule />
+                <>
+                  <Navigation/>
+                    <DetailSchedule />
+                  <Footer/>
+                </>
                 // </Layout>
               }
             />
@@ -58,7 +72,11 @@ const Routers = () => {
               path="/podcast"
               element={
                 // <Layout>
-                <Podcast />
+                <>
+                <Navigation/>
+                  <Podcast />
+                <Footer/>
+                </>
                 // </Layout>
               }
             />
@@ -66,7 +84,11 @@ const Routers = () => {
               path="/podcast/:id"
               element={
                 // <Layout>
-                <DetailPodcast />
+                <>
+                <Navigation/>
+                  <DetailPodcast />
+                <Footer/>
+                </>
                 // </Layout>
               }
             />
