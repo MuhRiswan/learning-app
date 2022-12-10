@@ -20,7 +20,7 @@ const LikedWebinar = () => {
 
   const filteredWebinar = useMemo(() => {
     return arrayWebinar.filter((el) => el.like.includes(localUID));
-  }, []);
+  }, [arrayWebinar]);
 
   useEffect(() => {
     if (fetchStatus === true) {
@@ -37,7 +37,7 @@ const LikedWebinar = () => {
             {filteredWebinar.length !== 0 ? (
               filteredWebinar.map((el) => (
                 <div className="col-lg-4 col-md-6" key={el.id}>
-                  <div className="card shadow mb-5">
+                  <div className="card card-item shadow mb-5">
                     <div className="card-title">
                       <img src={el.image} className="card-img-top" alt="" />
                     </div>

@@ -35,6 +35,7 @@
     cursor: pointer;
 }
 
+
 .card {
     margin-bottom: 10px;
     min-height: 635px;
@@ -85,6 +86,7 @@
     margin-top: 50px;
 }
 
+
 .detail-page .detail-page__image {
     width: 100%;
     text-align: center;
@@ -131,11 +133,9 @@
 .footer-middle {
     background-color: #fff;
     box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.2);
+
+@media screen and (min-width: 650px) {
 }
-
-@media screen and (min-width: 800px) {}
-
-@media screen and (min-width: 650px) {}
 
 @media (min-width: 320px) {
     .detail-page .detail-page__image {

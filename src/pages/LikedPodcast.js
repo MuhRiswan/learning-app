@@ -37,7 +37,7 @@ const LikedPodcast = () => {
             {filteredPodcast.length !== 0 ? (
               filteredPodcast.map((el) => (
                 <div className="col-lg-4 col-md-6" key={el.id}>
-                  <div className="card shadow mb-5">
+                  <div className="card card-item shadow mb-5">
                     <div className="card-title">
                       <img src={el.image} className="card-img-top" alt="" />
                     </div>
